@@ -147,13 +147,22 @@ ORDER BY ce.anyo_inicio;
 -- Query #24: list with the number of subjects taught by each teacher. 
 -- including teachers who do not teach any subjects
 -- Tsorted from highest to lowest by number of subjects.
-SELECT p.id, p.nombre, p.apellido1, p.apellido2, COUNT(a.id) AS numero_asignaturas
-FROM persona p
-INNER JOIN profesor pr ON p.id = pr.id_profesor
-LEFT JOIN asignatura a ON pr.id_profesor = a.id_profesor
-WHERE p.tipo = 'profesor'
-GROUP BY p.id, p.nombre, p.apellido1, p.apellido2
-ORDER BY numero_asignaturas DESC;
+SELECT
+    p.id,
+    p.nombre,
+    p.apellido1,
+    p.apellido2,
+    COUNT(a.id) AS numero_asignaturas 
+FROM
+    persona p
+INNER JOIN 
+    profesor pr ON p.id = pr.id_profesor
+LEFT JOIN 
+    asignatura a ON pr.id_profesor = a.id_profesor
+GROUP BY
+    p.id, p.nombre, p.apellido1, p.apellido2
+ORDER BY
+    numero_asignaturas DESC;
 -- Query #25: all data for the youngest student.
 SELECT *
 FROM persona
